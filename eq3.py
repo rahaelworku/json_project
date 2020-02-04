@@ -19,7 +19,7 @@ print(type(list_of_eqs))
 #check to see the number of eqs
 print(len(list_of_eqs))
 
-mags, lons, lats = [],[],[]
+mags, lons, lats, hover_texts= [],[],[],[]
 
 #get magnitude of earthquakes 
 for eq in list_of_eqs:
@@ -32,9 +32,11 @@ for eq in list_of_eqs:
     mag = eq['properties']['mag']
     lon = eq['geometry']['coordinates'][0]
     lat= eq['geometry']['coordinates'][1]
+    hover_text=eq['properties']['title']
     mags.append(mag)
     lons.append(lon)
     lats.append(lat)
+    hover_texts.append(hover_text)
 
 print(mags[:10])
 
@@ -48,6 +50,7 @@ data = [{
     'type': 'scattergeo',
     'lon': lons,
     'lat': lats,
+    'text':hover_texts,
     'marker':{
         #list comprehension (the size becomes larger)
         'size':[5*mag for mag in mags],
@@ -58,9 +61,9 @@ data = [{
      },
 }]
 
-my_layout = Layout(title="Global Earthquakes")
+my_layout = Layout(title="global_earthquakes.html")
 
-fig= {'data':data, 'laylout':my_layout}
+fig= {'data':data, 'layout':my_layout}
 
 offline.plot(fig,filename='global_earthquakes.html')
 offline.plot(fig,filename='global_earthquakes.html')

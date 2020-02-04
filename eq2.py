@@ -1,6 +1,6 @@
 import json
 
-in_file = open('eq_data_30_day_m1.json', 'r')
+in_file = open('eq_data_1_day_m1.json', 'r')
 out_file = open('readable_eq_data.json', 'w')
 
 eq_data = json.load(in_file)
@@ -60,7 +60,7 @@ data = [{
 
 my_layout = Layout(title="Global Earthquakes")
 
-fig= {'data':data, 'laylout':my_layout}
+fig= {'data':data, 'layout':my_layout}
 
 offline.plot(fig,filename='global_earthquakes.html')
 offline.plot(fig,filename='global_earthquakes.html')
